@@ -4,10 +4,12 @@
 set laststatus=2
 let g:airline_theme='powerlineish'
 set noshowmode " disable default statusline
-"let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-
+let g:airline_enable_fugitive=1
+let g:airline_enable_syntastic=1
+let g:airline_enable_bufferline=1
 
 "------------------------------------------------------------------------------
 " Colors and Fonts
@@ -34,13 +36,22 @@ autocmd BufWinLeave * call clearmatches()
 
 
 "------------------------------------------------------------------------------
+" Fugitive
+"------------------------------------------------------------------------------
+map ]] ]c
+map [[ [c
+map <leader>gdi :Gdiff<cr>
+map <leader>gst :Gstatus<cr>
+map <leader>dup :diffupdate<cr>
+
+"------------------------------------------------------------------------------
 " NERDTree
 "------------------------------------------------------------------------------
 " General properties
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeIgnore=['\.o$', '\.pyc$', '\.php\~$']
-let NERDTreeWinSize = 25
+let NERDTreeWinSize = 35
 
 " Make sure that when NT root is changed, Vim's pwd is also updated
 let NERDTreeChDirMode = 2
@@ -141,7 +152,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " User hotkeys
 "------------------------------------------------------------------------------
 
-" Ruby F2, Python, F3, Bash F4 
+" Ruby F2, Python, F3, Bash F4
 nnoremap <F4> :w\|!bash  %<CR>
 nnoremap <F2> :w\|!ruby  %<CR>
 nnoremap <F3> :w\|!python %<CR>
@@ -149,6 +160,7 @@ nnoremap <F3> :w\|!python %<CR>
 " ConqueTerm
 " ipython3 - F5
 nnoremap <F5> :ConqueTermSplit ipython3<CR>
+nnoremap <F7> :ConqueTermSplit zsh<CR>
 " " а debug-mode на <F6>
 " "nnoremap <F6> :exe "ConqueTermSplit ipython3 " . expand("%")<CR>
 let g:ConqueTerm_StartMessages = 0
@@ -164,9 +176,11 @@ let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports" "Explicited the formater plugin (gofmt, goimports, goreturn...)
 let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
 
-let g:go_highlight_methods = 1
-let g:go_highlight_functions = 1
 let g:go_highlight_structs = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
@@ -190,7 +204,6 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
-
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',

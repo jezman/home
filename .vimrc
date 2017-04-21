@@ -10,6 +10,8 @@ Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
 Plugin 'scrooloose/nerdtree'            " Project and file navigation
 Plugin 'tpope/vim-fugitive'             " Git
+Plugin 'mattn/gist-vim'                 " Gist
+Plugin 'mattn/webapi-vim'
 Plugin 'jiangmiao/auto-pairs'           " Autopair
 Plugin 'scrooloose/nerdcommenter'       " Commenter
 Plugin 'bling/vim-airline'              " Lean & mean status/tabline for vim

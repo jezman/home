@@ -26,6 +26,14 @@ vmap <Leader>w <ESC><ESC>:w<CR>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
+" move lines
+nnoremap <C-j> :m .+1<CR>
+nnoremap <C-k> :m .-2<CR>
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
 "------------------------------------------------------------------------------
 " VIM user interface
 "------------------------------------------------------------------------------
@@ -102,7 +110,9 @@ set nrformats=octal,hex,alpha
 "------------------------------------------------------------------------------
 
 " Color scheme
-colorscheme monokai-phoenix
+"colorscheme monokai-phoenix
+colorscheme molokai
+let g:molokai_original = 1
 let g:rehash256 = 1
 
 " Enable syntax highlighting
@@ -177,10 +187,14 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Switch buffer
+map <leader>bn :bn<cr>
+map <leader>bp :bp<cr>
 
 " Close the current buffer (w/o closing the current window)
 map <leader>bd :Bclose<cr>
@@ -200,7 +214,6 @@ map <leader>tk :tabprevious
 let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
-
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -233,7 +246,6 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
 
 "------------------------------------------------------------------------------
 " Editing mappings
@@ -294,7 +306,6 @@ map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
-
 "------------------------------------------------------------------------------
 " Spell checking
 "------------------------------------------------------------------------------
@@ -307,7 +318,6 @@ map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
-
 
 "------------------------------------------------------------------------------
 " Misc
