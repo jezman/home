@@ -65,7 +65,7 @@ let NERDTreeAutoCenter = 1
 map <leader>T :NERDTreeFind<cr>
 
 " Toogle on/off
-nmap <leader>o :NERDTreeToggle<cr>
+nmap <leader>\ :NERDTreeToggle<cr>
 
 "------------------------------------------------------------------------------
 " Syntastic
@@ -263,3 +263,27 @@ let g:pymode_folding = 0"
 
 "Disable choose first function/method at autocomplete
 let g:jedi#popup_select_first = 0
+
+
+"------------------------------------------------------------------------------
+" Clang-completer
+"------------------------------------------------------------------------------
+
+" path to directory where library can be found
+let g:clang_library_path='/usr/lib/llvm-4.0/lib/'
+
+" С/C++ files
+autocmd filetype c,cpp set cin
+" make-files
+autocmd filetype make set noexpandtab
+autocmd filetype make set nocin
+
+" Enable snippets
+let g:clang_snippets=1
+let g:clang_snippets_engine = 'ultisnips'
+" Auto error check
+let g:clang_periodic_quickfix=1
+" Error highlight
+let g:clang_hl_errors=1
+" Autoclose popup after choice
+let g:clang_close_preview=1
